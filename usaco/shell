@@ -1,0 +1,59 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main()
+{  
+    freopen("shell.in", "r", stdin);
+    freopen("shell.out", "w", stdout);
+    
+    
+    int N; cin >> N;
+    vector<vector<int>> total;
+    for(int i = 0; i < N; i++) {
+        vector<int> values;
+        int a, b, c; cin >> a >> b >> c;
+        values.push_back(a);
+        values.push_back(b);
+        values.push_back(c);
+        total.push_back(values);
+    }
+    
+    //for(vector<int> v: total) {cout << v[0] << v[1] << v[2] << endl;}
+
+    int max_points = 0;
+    vector<int> v1 = {1, 0, 0};
+    vector<int> v2 = {0, 1, 0};
+    vector<int> v3 = {0, 0, 1};
+    vector<vector<int>> v = {v1, v2, v3};
+    for(int p = 0; p < 3; p++) {
+        int points = 0;
+        vector<int> current = v[p];
+        for(int i = 0; i < N; i++) {
+            swap(current[total[i][0] - 1], current[total[i][1] - 1]);
+            //cout << total[i][0] - 1 << " " << total[i][1] - 1 << endl;
+            
+            //for(int i: current) {cout << i;}
+            //cout << endl;
+            if (current[total[i][2] - 1] == 1) {
+                points += 1;
+            }
+        }   
+        max_points = max(max_points, points);
+    }
+    
+    cout << max_points << endl;
+    
+    
+}
