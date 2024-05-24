@@ -1,0 +1,55 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main()
+{  
+    freopen("shuffle.in", "r", stdin);
+    freopen("shuffle.out", "w", stdout);
+    
+    
+    int N; cin >> N;
+    vector<int> shuffle;
+    for(int i = 0; i < N; i++) {
+        int inp; cin >> inp;
+        shuffle.push_back(inp);
+    }
+    
+    vector<int> positions;
+    for(int i = 0; i < N; i++) {
+        int inp; cin >> inp;
+        positions.push_back(inp);
+    }
+    
+    vector<int> final = positions;
+    
+
+    for(int p = 0; p < 3; p++) {
+        vector<int> fine(N, 0);
+        for(int i = 0; i < N; i++) {
+            fine[i] = final[shuffle[i] - 1];
+        }
+        final = fine;
+    }
+    
+    for(int i: final) {
+        cout << i << endl;
+    }
+    
+
+    
+    
+    
+}
+
