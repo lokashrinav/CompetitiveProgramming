@@ -1,0 +1,52 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>     // For standard input and output operations
+#include <vector>       // For using the vector container
+#include <algorithm>    // For algorithms like sort, max, min, etc.
+#include <cmath>        // For mathematical functions
+#include <string>       // For string operations
+#include <map>          // For the map container
+#include <set>          // For the set container
+#include <queue>        // For the queue, priority_queue containers
+#include <stack>        // For the stack container
+#include <deque>        // For the deque container
+#include <cstdio>       // For printf and scanf
+#include <cstring>      // For C-style string functions like memset, strcmp, etc.
+#include <climits>      // For limits of integral types
+#include <cassert>      // For the assert function
+#include <numeric>
+#include <limits.h>
+
+// Using namespace std to avoid typing std:: before standard library names
+using namespace std;
+
+int main()
+{
+    freopen("censor.in", "r", stdin);
+    freopen("censor.out", "w", stdout);
+    
+    string s, cen; cin >> s >> cen;
+    
+    int index = 0;
+    while(index + cen.length() <= s.length()) {
+        string find = s.substr(index, cen.length());
+        if(find == cen) {
+            //s = s.substr(0, index) + s.substr(index + cen.length());
+            s.erase(index, cen.length());
+            index -= cen.length();
+            if(index < 0) {
+                index = 0;
+            }
+        }
+        index += 1;
+    }
+    
+    cout << s << endl;
+    
+}
