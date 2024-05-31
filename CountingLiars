@@ -1,0 +1,147 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>     // For standard input and output operations
+#include <vector>       // For using the vector container
+#include <algorithm>    // For algorithms like sort, max, min, etc.
+#include <cmath>        // For mathematical functions
+#include <string>       // For string operations
+#include <map>          // For the map container
+#include <set>          // For the set container
+#include <queue>        // For the queue, priority_queue containers
+#include <stack>        // For the stack container
+#include <deque>        // For the deque container
+#include <cstdio>       // For printf and scanf
+#include <cstring>      // For C-style string functions like memset, strcmp, etc.
+#include <climits>      // For limits of integral types
+#include <cassert>      // For the assert function
+#include <numeric>
+#include <limits.h>
+
+// Using namespace std to avoid typing std:: before standard library names
+using namespace std;
+
+int main()
+{
+    //freopen("diamond.in", "r", stdin);
+    //freopen("diamond.out", "w", stdout);
+    
+    int N; cin >> N;
+    vector<pair<int, string>> Gvec;
+    vector<pair<int, string>> Lvec;
+    for(int i = 0; i < N; i++) {
+        pair<int, string> p;
+        cin >> p.second >> p.first;
+        if(p.second == "G") {Gvec.push_back(p);}
+        if(p.second == "L") {Lvec.push_back(p);}
+    }
+    
+    sort(Gvec.begin(), Gvec.end());
+    sort(Lvec.begin(), Lvec.end());
+    reverse(Lvec.begin(), Lvec.end());
+    
+    /*for(pair<int, string> i: Gvec) {
+        cout << i.first << " ";
+    }
+    cout << endl;
+    for(pair<int, string> i: Lvec) {
+        cout << i.first << " ";
+    }
+    cout << endl;*/
+    
+
+    
+    int maxCount = 0;
+    int count;
+    for(int i = 0; i < Gvec.size(); i++) {
+        count = 0;
+        for(int p = 0; p < Lvec.size(); p++) {
+            if(Lvec[p] < Gvec[i]) {
+                break;
+            }
+            count += 1;
+        }
+        maxCount = max(maxCount, count + i + 1);
+    }
+    
+    cout << N - maxCount << endl;
+}
+    
+    
+    
+    
+    /*int count;
+    int maxCount = 0;
+    
+    int highestL = 0;
+    int lowestG = INT_MAX;
+    for(int i = 0; i <= N; i++) {
+        for(int p = i + 1; p <= N; p++) {
+            bool smth = true;
+            highestL = -1;
+            lowestG = INT_MAX;
+            vector<pair<string, int>> sub = {vec.begin() + i, vec.begin() + p};
+            
+            for(int z = 0; z < sub.size(); z++) {
+                if(sub[z].first == "G") {
+                    lowestG = min(sub[z].second, lowestG);
+                }
+                else if(sub[z].first == "L") {
+                    highestL = max(sub[z].second, highestL);
+                }
+                if(highestL < lowestG && highestL != -1 && lowestG != INT_MAX) {
+                    smth = false;
+                }
+            }
+            if(smth) {
+                count = sub.size();
+                maxCount = max(maxCount, count);
+            }
+            /*count = 1;
+            int number = 0;
+            vector<pair<string, int>> sub = {vec.begin() + i, vec.begin() + p};
+            *//*for(pair<string, int> p1: sub) {
+                cout << p1.first << p1.second << " ";
+            }
+            cout << endl;*/
+            /*int highG;
+            int lowL;
+            bool x = true;*/
+            /*for(int z = 0; z < sub.size(); z++) {
+                if(sub[z].first == "G") {
+                    if(z == 0) {
+                        highG = sub[z].second;
+                    }
+                    else {
+                        highG = min(sub[z].second, highG);
+                    }
+                }
+                else if(sub[z].first == "L") {
+                    if(z == 0) {
+                        lowL = sub[z].second;
+                    }
+                    else {
+                        lowL = max(sub[z].second, lowL);
+                    }
+                }
+                if(lowL < highG) {
+                    count = z;
+                    x = false;
+                    break;
+                }
+            }
+            if(x == true) {
+                count = sub.size() - 1;
+            }
+            maxCount = max(maxCount, count);
+        }
+    }
+    
+    cout << N - maxCount << endl;
+    
+}*/
