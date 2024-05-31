@@ -1,0 +1,68 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>     // For standard input and output operations
+#include <vector>       // For using the vector container
+#include <algorithm>    // For algorithms like sort, max, min, etc.
+#include <cmath>        // For mathematical functions
+#include <string>       // For string operations
+#include <map>          // For the map container
+#include <set>          // For the set container
+#include <queue>        // For the queue, priority_queue containers
+#include <stack>        // For the stack container
+#include <deque>        // For the deque container
+#include <cstdio>       // For printf and scanf
+#include <cstring>      // For C-style string functions like memset, strcmp, etc.
+#include <climits>      // For limits of integral types
+#include <cassert>      // For the assert function
+#include <numeric>
+#include <limits.h>
+
+// Using namespace std to avoid typing std:: before standard library names
+using namespace std;
+
+int main()
+{
+    freopen("pails.in", "r", stdin);
+    freopen("pails.out", "w", stdout);
+    
+    int X, Y, M; cin >> X >> Y >> M;
+    
+    int maxSum = 0;
+    int sum = 0;
+    if (M % X == 0 || M % Y == 0) {
+        cout << M << endl;
+    }
+    else {
+        int loops = M / X;
+        for(int i = 0; i <= loops; i++) {
+            int op = M - X * i;
+            int divi = (op / Y) * Y;
+            int sum = X * i + divi;
+            if(sum <= M) {
+                maxSum = max(sum, maxSum);
+            }
+        }
+        
+        /*int x = M / X;
+        int y = M / Y;
+        
+        int maxSum = 0;
+        for(int i = 0; i < x + 1; i++) {
+            for(int p = 0; p < y + 1; p++) {
+                int sum = X * i + Y * p;
+                if(sum <= M) {
+                    maxSum = max(maxSum, sum);
+                }
+            }
+        }*/
+        
+        cout << maxSum << endl;
+    }
+    
+}
